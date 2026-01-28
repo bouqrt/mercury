@@ -1,4 +1,10 @@
-<h1>Add contact</h1>
+@extends('layouts.app')
+
+@section('content')
+
+
+
+<h1> create new contact </h1>
 
 <form method="POST" action="{{ route('contacts.store') }}">
     @csrf

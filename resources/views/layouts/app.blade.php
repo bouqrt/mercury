@@ -2,111 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contacts App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Vibes Contacts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --pink-light: #ffc8dd;
+            --pink-mid: #ffafcc;
+            --pink-hot: #fb6f92;
+            --violet: #a2d2ff;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(-45deg, #fde2e4, #fad2e1, #e2e2ff, #fff1f2);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
             margin: 0;
-            padding: 0;
         }
 
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 25px 50px -12px rgba(255, 175, 204, 0.5);
+            margin-top: 40px;
         }
 
+        /* Float Animation for Header */
         h1 {
-            margin-top: 0;
+            font-weight: 800;
+            font-size: 2.5rem;
+            text-align: center;
+            color: #5a189a;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
         }
 
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
+        /* Bouncy Buttons */
         .btn {
-            padding: 8px 14px;
-            border-radius: 6px;
+            border-radius: 20px;
+            padding: 12px 25px;
             border: none;
-            text-decoration: none;
-            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
-            background: #2563eb;
+            background: var(--pink-hot);
             color: white;
+            box-shadow: 0 10px 20px rgba(251, 111, 146, 0.3);
         }
 
-        .btn-danger {
-            background: #dc2626;
-            color: white;
+        .btn-primary:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 15px 25px rgba(251, 111, 146, 0.4);
         }
 
-        .btn-secondary {
-            background: #e5e7eb;
-            color: #111827;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
+        /* Search Bar Motion */
         .search-bar input {
-            flex: 1;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
+            width: 100%;
+            padding: 18px 25px;
+            border-radius: 25px;
+            border: 3px solid transparent;
+            background: white;
+            font-size: 16px;
+            transition: 0.3s all;
+            box-sizing: border-box;
         }
 
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--pink-mid);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 175, 204, 0.2);
+        }
+
+        /* Card Transitions */
         .contact-card {
-            background: #f9fafb;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.5s forwards ease-out;
         }
 
-        .contact-info {
-            line-height: 1.6;
+        .contact-card:hover {
+            background: white;
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.05);
         }
 
-        .contact-actions a,
-        .contact-actions button {
-            margin-left: 8px;
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .flash {
-            background: #dcfce7;
-            color: #166534;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+        .contact-actions {
+            display: flex;
+            gap: 10px;
         }
 
-        .empty {
-            text-align: center;
-            color: #6b7280;
-            margin-top: 30px;
+        .btn-danger {
+            background: #ffcfd2;
+            color: #a4133c;
         }
+        
+        .btn-danger:hover {
+            background: #ff4d6d;
+            color: white;
+            transform: rotate(-3deg);
+        }
+
     </style>
 </head>
 <body>
-
-<div class="container">
-    @yield('content')
-</div>
-
+    <div class="container">
+        @yield('content')
+    </div>
 </body>
 </html>

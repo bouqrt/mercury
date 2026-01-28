@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('content')
+
+
+
 <h1>Edit contact</h1>
 
 <form method="POST" action="{{ route('contacts.update', $contact) }}">
