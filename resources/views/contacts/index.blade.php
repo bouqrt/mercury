@@ -4,32 +4,43 @@
     <p style="color:green">{{ session('success') }}</p>
 @endif
 
-<a href="{{ route('contacts.create') }}">➕ New contact</a>
-
-<ul>
-@foreach($contacts as $contact)
-    <li>
-        {{ $contact->name }} - {{ $contact->email }} - {{ $contact->phone }}
-
-        <a href="{{ route('contacts.edit', $contact) }}">✏️</a>
-
-        <form action="{{ route('contacts.destroy', $contact) }}" method="POST" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit">🗑️</button>
-        </form>
-    </li>
-@endforeach
-</ul>
+<hr>
 
 <form method="GET" action="{{ route('contacts.index') }}">
     <input
         type="text"
         name="search"
-        placeholder="search contacts by name"
+        placeholder="Search contacts by name"
         value="{{ $search ?? '' }}"
     >
-
-    <button type="submit">🔍 search </button>
+    <button type="submit">🔍 Search</button>
+    <a href="{{ route('contacts.index') }}">Reset</a>
 </form>
 
+<hr>
+
+<a href="{{ route('contacts.create') }}">➕ New contact</a>
+
+@if($contacts->count() > 0)
+    <ul>
+        @foreach($contacts as $contact)
+            <li>
+                {{ $contact->name }} -
+                {{ $contact->email }} -
+                {{ $contact->phone ?? '—' }}
+
+                <a href="{{ route('contacts.edit', $contact) }}">✏️</a>
+
+                <form action="{{ route('contacts.destroy', $contact) }}"
+                      method="POST"
+                      style="display:inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">🗑️</button>
+                </form>
+            </li>
+        @endforeach
+    </ul>
+@else
+    <p>No contacts found.</p>
+@endif
