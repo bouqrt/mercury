@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->foreignId('group_id')->references('id')->on('groups');
+            $table->foreignId('group_id')->nullable()->references('id')->on('groups')->nullOnDelete();
             $table->timestamps();
         });
     }
