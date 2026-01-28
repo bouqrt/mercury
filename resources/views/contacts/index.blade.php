@@ -26,9 +26,10 @@
     <input
         type="text"
         name="search"
-        placeholder="Rechercher par nom"
+        placeholder="search contacts by name"
         value="{{ $search ?? '' }}"
     >
 
-    <button type="submit">🔍 Rechercher</button>
+    <button type="submit">🔍 search </button>
 </form>
+
