@@ -21,3 +21,14 @@
     </li>
 @endforeach
 </ul>
+
+<form method="GET" action="{{ route('contacts.index') }}">
+    <input
+        type="text"
+        name="search"
+        placeholder="Rechercher par nom"
+        value="{{ $search ?? '' }}"
+    >
+
+    <button type="submit">🔍 Rechercher</button>
+</form>

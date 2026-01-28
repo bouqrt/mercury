@@ -14,6 +14,14 @@ class ContactController extends Controller
     {
         $contacts = Contact::all();
         return view('contacts.index', compact('contacts'));
+
+        
+        $search = $request->input('search');
+        $contacts = Contact::when($search, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        })->get();
+
+        return view('contacts.index', compact('contacts', 'search'));
     }
 
     /**
