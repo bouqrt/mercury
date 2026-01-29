@@ -10,7 +10,7 @@
 <form method="GET" action="{{ route('contacts.index') }}" class="search-bar" style="margin-bottom: 30px;">
     <div style="display: flex; gap: 10px;">
         <input type="text" name="search" placeholder="Who are you looking for?" value="{{ $search ?? '' }}">
-        <button class="btn btn-primary" style="background: var(--violet); color: #4a4a4a;"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 41 41"><g fill="none"><path fill="#ff52a1" stroke="#231f20" stroke-miterlimit="10" d="M28.39 5.85c-6.76-6.75-15-7.5-22.53 0s-6.75 15.77 0 22.52c5.79 5.79 12.68 7.15 19.26 2.71c.58.92 1.28 1.82 2.14 2.92c6.25 7.93 8.82 5.46 10.5 3.78S41.9 33.53 34 27.27c-1.08-.86-2-1.55-2.91-2.14c4.45-6.58 3.09-13.48-2.7-19.28Z"/><path fill="#a5dff3" stroke="#231f20" stroke-miterlimit="10" d="M7.14 17.11a9.99 9.99 0 1 0 19.98 0a9.99 9.99 0 0 0-19.98 0Z"/><path fill="#fff" d="M14.8 11a3.74 3.74 0 0 1 4.71-.16"/><path stroke="#231f20" stroke-linecap="round" stroke-miterlimit="10" d="M14.8 11a3.74 3.74 0 0 1 4.71-.16"/><path stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" d="M19.73 3.79a7.5 7.5 0 0 1 4.88 2.57"/></g></svg></button>
+        <button class="btn btn-primary" style="background: var(--violet); color: #4a4a4a;"><svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 0 41 41"><g fill="none"><path fill="#ff52a1" stroke="#5a189a" stroke-miterlimit="10" d="M28.39 5.85c-6.76-6.75-15-7.5-22.53 0s-6.75 15.77 0 22.52c5.79 5.79 12.68 7.15 19.26 2.71c.58.92 1.28 1.82 2.14 2.92c6.25 7.93 8.82 5.46 10.5 3.78S41.9 33.53 34 27.27c-1.08-.86-2-1.55-2.91-2.14c4.45-6.58 3.09-13.48-2.7-19.28Z"/><path fill="#a5dff3" stroke="#231f20" stroke-miterlimit="10" d="M7.14 17.11a9.99 9.99 0 1 0 19.98 0a9.99 9.99 0 0 0-19.98 0Z"/><path fill="#fff" d="M14.8 11a3.74 3.74 0 0 1 4.71-.16"/><path stroke="#231f20" stroke-linecap="round" stroke-miterlimit="10" d="M14.8 11a3.74 3.74 0 0 1 4.71-.16"/><path stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" d="M19.73 3.79a7.5 7.5 0 0 1 4.88 2.57"/></g></svg></button>
     </div>
 </form>
 
@@ -24,11 +24,11 @@
             </div>
 
             <div class="contact-actions">
-                <a href="{{ route('contacts.edit', $contact) }}" class="btn" style="background: #e2e2ff;">✏️</a>
+                <a href="{{ route('contacts.edit', $contact) }}" class="btn" style="background: #e2e2ff;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#5a189a" d="M3.548 20.938h16.9a.5.5 0 0 0 0-1h-16.9a.5.5 0 0 0 0 1ZM9.71 17.18a2.587 2.587 0 0 0 1.12-.65l9.54-9.54a1.75 1.75 0 0 0 0-2.47l-.94-.93a1.788 1.788 0 0 0-2.47 0l-9.54 9.53a2.473 2.473 0 0 0-.64 1.12L6.04 17a.737.737 0 0 0 .19.72a.767.767 0 0 0 .53.22Zm.41-1.36a1.468 1.468 0 0 1-.67.39l-.97.26l-1-1l.26-.97a1.521 1.521 0 0 1 .39-.67l.38-.37l1.99 1.99Zm1.09-1.08l-1.99-1.99l6.73-6.73l1.99 1.99Zm8.45-8.45L18.65 7.3l-1.99-1.99l1.01-1.02a.748.748 0 0 1 1.06 0l.93.94a.754.754 0 0 1 0 1.06Z"/></svg></a>
                 <form action="{{ route('contacts.destroy', $contact) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger">🗑️</button>
+                    <button class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 26 26"><path fill="#5a189a" d="M11.5-.031c-1.958 0-3.531 1.627-3.531 3.594V4H4c-.551 0-1 .449-1 1v1H2v2h2v15c0 1.645 1.355 3 3 3h12c1.645 0 3-1.355 3-3V8h2V6h-1V5c0-.551-.449-1-1-1h-3.969v-.438c0-1.966-1.573-3.593-3.531-3.593h-3zm0 2.062h3c.804 0 1.469.656 1.469 1.531V4H10.03v-.438c0-.875.665-1.53 1.469-1.53zM6 8h5.125c.124.013.247.031.375.031h3c.128 0 .25-.018.375-.031H20v15c0 .563-.437 1-1 1H7c-.563 0-1-.437-1-1V8zm2 2v12h2V10H8zm4 0v12h2V10h-2zm4 0v12h2V10h-2z"/></svg></button>
                 </form>
             </div>
         </div>
