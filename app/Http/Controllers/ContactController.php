@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -13,11 +14,21 @@ class ContactController extends Controller
     public function index(request $request)
     {
         $search = $request->search;
-        $contacts = Contact::when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        })->get();
+        $groupId = $request->group_id;
 
-        return view('contacts.index', compact('contacts', 'search'));
+        $contacts = Contact::with('group')
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'like', "%$search%");
+            })
+            ->when($groupId, function ($query, $groupId) {
+                $query->where('group_id', $groupId);
+            })
+            ->get();
+
+        $groups = Group::all();
+
+        return view('contacts.index', compact('contacts','groups','search','groupId'
+    ));
     }
 
     /**
