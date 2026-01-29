@@ -25,7 +25,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contacts.create');
+        $groups = Group::all();
+        return view('contacts.create', compact('groups'));
     }
 
     /**
@@ -36,7 +37,8 @@ class ContactController extends Controller
         $request->validate([
         'name' => 'required|min:3',
         'email' => 'required|email',
-        'phone' => 'required'
+        'phone' => 'required',
+        'group_id' => 'nullable|exists:groups,id'
     ]);
 
     Contact::create($request->all());

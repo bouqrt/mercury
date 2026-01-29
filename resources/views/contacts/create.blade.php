@@ -20,3 +20,14 @@
 
     <button type="submit">Save</button>
 </form>
+
+<label>Group (optional)</label>
+<select name="group_id">
+    <option value="">— No group —</option>
+
+    @foreach($groups as $group)
+        <option value="{{ $group->id }}">
+            {{ $group->name }}
+        </option>
+    @endforeach
+</select>
