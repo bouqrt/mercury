@@ -1,33 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+<h1>New Contact</h1>
 
-
-
-<h1> create new contact </h1>
-
+<div class="card">
 <form method="POST" action="{{ route('contacts.store') }}">
     @csrf
 
-    <input type="text" name="name" placeholder="Name"><br>
-    @error('name') <p>{{ $message }}</p> @enderror
+    <label>Name</label>
+    <input type="text" name="name">
 
-    <input type="email" name="email" placeholder="Email"><br>
-    @error('email') <p>{{ $message }}</p> @enderror
+    <label>Email</label>
+    <input type="email" name="email">
 
-    <input type="text" name="phone" placeholder="Phone"><br>
-    @error('phone') <p>{{ $message }}</p> @enderror
+    <label>Phone</label>
+    <input type="text" name="phone">
 
-    <button type="submit">Save</button>
+    <label>Group</label>
+    <select name="group_id">
+        <option value="">No group</option>
+        @foreach($groups as $group)
+            <option value="{{ $group->id }}">{{ $group->name }}</option>
+        @endforeach
+    </select>
+
+    <button class="btn btn-primary">Save</button>
 </form>
-
-<label>Group (optional)</label>
-<select name="group_id">
-    <option value="">— No group —</option>
-
-    @foreach($groups as $group)
-        <option value="{{ $group->id }}">
-            {{ $group->name }}
-        </option>
-    @endforeach
-</select>
+</div>
+@endsection

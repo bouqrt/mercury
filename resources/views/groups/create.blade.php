@@ -1,10 +1,16 @@
-<h1>Créer un groupe</h1>
+@extends('layouts.app')
 
+@section('content')
+<h1>New Group</h1>
+
+<div class="card">
 <form method="POST" action="{{ route('groups.store') }}">
     @csrf
 
-    <input type="text" name="name" placeholder="Nom du groupe">
-    @error('name') <p style="color:red">{{ $message }}</p> @enderror
+    <label>Group name</label>
+    <input type="text" name="name">
 
-    <button type="submit">Créer</button>
+    <button class="btn btn-primary">Save</button>
 </form>
+</div>
+@endsection

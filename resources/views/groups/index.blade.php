@@ -1,23 +1,29 @@
-<h1> group list </h1>
+@extends('layouts.app')
 
-@if(session('success'))
-    <p style="color:green">{{ session('success') }}</p>
-@endif
+@section('content')
+<h1>Groups</h1>
 
-<a href="{{ route('groups.create') }}"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="#000000" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zm149.3 277.3c0 11.8-9.5 21.3-21.3 21.3h-85.3V384c0 11.8-9.5 21.3-21.3 21.3h-42.7c-11.8 0-21.3-9.6-21.3-21.3v-85.3H128c-11.8 0-21.3-9.6-21.3-21.3v-42.7c0-11.8 9.5-21.3 21.3-21.3h85.3V128c0-11.8 9.5-21.3 21.3-21.3h42.7c11.8 0 21.3 9.6 21.3 21.3v85.3H384c11.8 0 21.3 9.6 21.3 21.3v42.7z"/></svg> </a>
+<a href="{{ route('groups.create') }}" class="btn btn-primary">➕ Add Group</a>
 
-<ul>
+<br><br>
+
 @foreach($groups as $group)
-    <li>
-        {{ $group->name }}
+    <div class="group-item">
+        <span class="group-badge">{{ $group->name }}</span>
 
-        <a href="{{ route('groups.edit', $group) }}">✏️</a>
+        <div>
+            <a href="{{ route('groups.edit', $group) }}" class="btn btn-secondary">✏️</a>
 
-        <form action="{{ route('groups.destroy', $group) }}" method="POST" style="display:inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit">🗑️</button>
-        </form>
-    </li>
+            <form action="{{ route('groups.destroy', $group) }}" method="POST" style="display:inline">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">🗑️</button>
+            </form>
+        </div>
+    </div>
 @endforeach
-</ul>
+
+@if($groups->isEmpty())
+    <p class="empty">No groups yet 🎀</p>
+@endif
+@endsection
